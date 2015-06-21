@@ -20,7 +20,7 @@ def main(directory_name = ARGV[0])
       search_pattern(file, /CALL\s+PGM\(BSHULFT\)\s+PARM\('(.)'\s+(.+)\s+'(.+)'/) {|m|
         file_id = m[2]
         search_pattern(file, /CHGVAR\s+VAR\(#{file_id}\)\s+VALUE\('(.+)'\)/) {|m|
-          p m[1].strip
+          puts "#{file.sub(".txt", "")} #{m[1].strip}"
         }
       }
     }
