@@ -30,7 +30,14 @@ def calender(year = Date.today.year, month = Date.today.month)
   puts buf
   puts
   puts (WorkDate.new(year, month, 1) - 1).eigo(4).strftime("%m/%d 1日約定自振戻り")
+  puts (Date.new(year, month, 20) - 15).strftime("%m/%d 20日約定請求確定")
+  puts (Date.new(year, month, 27) - 15).strftime("%m/%d 27日約定請求確定")
+  puts (WorkDate.new(year, month, 12) - 1).eigo(3).strftime("%m/%d 12日約定自振戻り(1日目)")
+  puts (Date.new(year, month + 1, 1) - 16).strftime("%m/%d 月末約定請求確定")
   puts (Date.new(year, month + 1, 1) - 15).strftime("%m/%d 1日約定請求確定")
+  puts (WorkDate.new(year, month, 20) - 1).eigo(4).strftime("%m/%d 20日約定自振戻り")
+  puts (Date.new(year, month + 1, 10) - 15).strftime("%m/%d 10日約定請求確定")
+  puts (Date.new(year, month + 1, 12) - 15).strftime("%m/%d 12日約定請求確定")
   puts last.strftime("%m/%d 月末")
 
 end
