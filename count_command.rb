@@ -1,4 +1,3 @@
-
 # RPGのプログラム中で使用されている命令を頻出度順に出力
 
 class Line
@@ -38,23 +37,26 @@ class Line
   end
 end
 
-
-def main(filename = ARGV[0])
-
-  input_file = open(filename + ".txt")
+def main(directory_name = ARGV[0])
 
   count = Hash.new(0)
 
-  while line = input_file.gets
-    line = Line.new(line)
-    o = Operation.new(line.operation,line.factor1,line.factor2,line.result)
+  Dir.open(directory_name) {|dir|
+    Dir.chdir(directory_name)
 
-    if line.specificationType == "C" && !(line.isComment)
-      count[o.name] += 1
-    end 
-  end
+    dir.each {|file|
+      next if file == "." || file == ".."
+      open(file) {|f|
+        while line = f.gets
+          line = Line.new(line)
+            if line.specificationType == "C" && !(line.isComment)
+              count[line.operation] += 1
+            end
 
-  input_file.close
+        end
+      }
+    }
+  }
 
   sort_command = count.sort_by{|key,val| -val}
 
@@ -68,3 +70,5 @@ def main(filename = ARGV[0])
 end
 
 main()
+
+
