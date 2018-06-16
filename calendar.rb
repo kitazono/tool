@@ -14,9 +14,9 @@ def calender(year = Date.today.year, month = Date.today.month)
   next_date = first
   while next_date <= last
     if next_date === Date.today
-      buf << sprintf(" \e[7m%2d\e[0m", next_date.day)      
+      buf << sprintf(" \e[7m%2d\e[0m", next_date.day)   # \e エスケープ [7m　背景色と前景色を反転 [0m 属性クリア
     elsif holiday?(next_date)
-      buf << sprintf(" \e[4m%2d\e[0m", next_date.day)
+      buf << sprintf(" \e[4m%2d\e[0m", next_date.day)   # [4m 下線
     else
       buf << sprintf("%3d", next_date.day)
     end
